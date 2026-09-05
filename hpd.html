@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shivi 🌷</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: white;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 150, 190, .15), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(180, 120, 255, .15), transparent 30%),
+        linear-gradient(135deg, #120817, #24102f, #100817);
+}
+
+/* Background stars */
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+/* Music */
+#bgMusic {
+    display: none;
+}
+
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Screens */
+.screen {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    z-index: 2;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn .8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.content {
+    width: min(850px, 100%);
+}
+
+.small {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    opacity: .7;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(42px, 9vw, 90px);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: clamp(30px, 6vw, 58px);
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: .85;
+}
+
+.highlight {
+    color: #ffd0df;
+}
+
+.heart {
+    font-size: 45px;
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
+/* Buttons */
+button.main-btn {
+    margin-top: 35px;
+    padding: 15px 28px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 50px;
+    background: rgba(255,255,255,.12);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: .3s;
+}
+
+button.main-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.2);
+}
+
+/* Timeline */
+.timeline {
+    margin: 35px auto;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.timeline-item {
+    flex: 1;
+}
+
+.timeline-circle {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.08);
+    font-size: 20px;
+}
+
+.line {
+    height: 1px;
+    flex: 1;
+    background: rgba(255,255,255,.25);
+}
+
+.year {
+    margin-top: 10px;
+    font-size: 13px;
+    opacity: .7;
+}
+
+/* Letter */
+.letter {
+    max-width: 650px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(10px);
+}
+
+.letter p {
+    text-align: left;
+    font-size: 17px;
+}
+
+/* Photos */
+.photos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.photo {
+    width: 180px;
+    height: 220px;
+    padding: 10px 10px 35px;
+    background: #f5e9e5;
+    color: #4b3040;
+    transform: rotate(-3deg);
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+.photo:nth-child(2) {
+    transform: rotate(3deg);
+}
+
+.photo:nth-child(3) {
+    transform: rotate(-1deg);
+}
+
+.photo-inner {
+    height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3a203d, #6d3659);
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+}
+
+/* Tulips */
+.tulip {
+    position: fixed;
+    top: -50px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 50;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* Secret */
+.secret {
+    display: none;
+    margin-top: 25px;
+    font-size: 21px;
+    color: #ffd1df;
+    animation: fadeIn .8s;
+}
+
+@media(max-width:600px) {
+    .screen {
+        padding: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .timeline {
+        gap: 5px;
+    }
+
+    .timeline-circle {
+        width: 45px;
+        height: 45px;
+    }
+
+    .photo {
+        width: 135px;
+        height: 175px;
+    }
+
+    .photo-inner {
+        height: 135px;
+    }
+
+    .letter {
+        padding: 22px;
+        max-height: 65vh;
+        overflow: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     🎵 SONG
+     Put your song file in the same folder as this HTML.
+     
+     Rename your song to:
+     something-about-you.mp4
+     
+     OR change the filename below to your actual filename.
+====================================================== -->
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="something-about-you.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Music Button -->
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+
+<!-- SCREEN 0 -->
+<section class="screen active" id="screen0">
+    <div class="content">
+
+        <div class="small">A little surprise for you</div>
+
+        <div class="heart">♡</div>
+
+        <h1>
+            Hey,<br>
+            <span class="highlight">Sunshine ☀️</span>
+        </h1>
+
+        <p>
+            I made something special<br>
+            just for you...
+        </p>
+
+        <button class="main-btn" onclick="startSurprise()">
+            Open Your Surprise 🌷
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SCREEN 1 -->
+<section class="screen" id="screen1">
+    <div class="content">
+
+        <div class="small">Chapter 01 · Five Years</div>
+
+        <h2>Do you remember?</h2>
+
+        <p>
+            Class 11th.<br>
+            That's where our story started.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-circle">📚</div>
+                <div class="year">Class 11th</div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="timeline-item">
+                <div class="timeline-circle">♡</div>
+                <div class="year">5 Years</div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="timeline-item">
+                <div class="timeline-circle">🌷</div>
+                <div class="year">Today</div>
+            </div>
+
+        </div>
+
+        <p>
+            Five years of knowing you...
+            <br>
+            and somehow, you still make my heart smile.
+        </p>
+
+        <button class="main-btn" onclick="nextScreen()">
+            Continue ✨
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+    <div class="content">
+
+        <div class="small">Chapter 02 · My Princess</div>
+
+        <h2>For My Princess 👑</h2>
+
+        <div class="letter">
+
+            <p>
+                Dear Shivi,
+                <br><br>
+
+                You probably don't realize how special you are
+                to me.
+                <br><br>
+
+                From Class 11th until now, so much has changed,
+                but one thing somehow stayed the same —
+                you still have a special place in my heart.
+                <br><br>
+
+                You are my sunshine on the days that feel a
+                little dark, and honestly, I'm just really happy
+                that I got to know someone like you.
+                <br><br>
+
+                I hope this birthday brings you everything
+                beautiful that you deserve.
+                <br><br>
+
+                Happy Birthday, my princess. 🌷
+            </p>
+
+        </div>
+
+        <button class="main-btn" onclick="nextScreen()">
+            Next 💕
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+    <div class="content">
+
+        <div class="small">Chapter 03 · Memories</div>
+
+        <h2>Little Memories 📸</h2>
+
+        <p>
+            Some moments deserve a place forever.
+        </p>
+
+        <div class="photos">
+
+            <div class="photo">
+                <div class="photo-inner">
+                    Add Photo 1
+                </div>
+            </div>
+
+            <div class="photo">
+                <div class="photo-inner">
+                    Add Photo 2
+                </div>
+            </div>
+
+            <div class="photo">
+                <div class="photo-inner">
+                    Add Photo 3
+                </div>
+            </div>
+
+        </div>
+
+        <button class="main-btn" onclick="nextScreen()">
+            One Last Thing 💗
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
+    <div class="content">
+
+        <div class="small">The Final Surprise</div>
+
+        <div class="heart">♡</div>
+
+        <h1>
+            Happy Birthday,<br>
+            <span class="highlight">Shivi 🌷</span>
+        </h1>
+
+        <p>
+            My Sunshine. My Princess.
+            <br>
+            Five years of knowing you...
+            <br>
+            and I hope there are many more memories to come.
+        </p>
+
+        <button class="main-btn" onclick="showSecret()">
+            There's Something For You 💌
+        </button>
+
+        <div class="secret" id="secret">
+            You will always be someone very special to me. ❤️
+            <br><br>
+            Keep smiling, Sunshine. 🌷
+        </div>
+
+        <br>
+
+        <button class="main-btn" onclick="tulipRain()">
+            🌷 Tulip Rain
+        </button>
+
+    </div>
+</section>
+
+
+<!-- Navigation Dots -->
+<div class="nav">
+
+    <div class="dot active" onclick="go(0)"></div>
+    <div class="dot" onclick="go(1)"></div>
+    <div class="dot" onclick="go(2)"></div>
+    <div class="dot" onclick="go(3)"></div>
+    <div class="dot" onclick="go(4)"></div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   🎵 MUSIC SYSTEM
+===================================================== */
+
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let musicPlaying = false;
+
+
+/* Start music when she clicks the surprise button */
+function startSurprise() {
+
+    music.volume = 0.55;
+
+    music.play()
+        .then(() => {
+            musicPlaying = true;
+            musicBtn.textContent = "🔊";
+        })
+        .catch(() => {
+            musicBtn.textContent = "🎵";
+        });
+
+    go(1);
+}
+
+
+/* Play / Pause button */
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+                musicPlaying = true;
+                musicBtn.textContent = "🔊";
+            })
+            .catch(() => {
+                alert("Please tap Open Your Surprise first to start the music.");
+            });
+
+    } else {
+
+        music.pause();
+        musicPlaying = false;
+        musicBtn.textContent = "🎵";
+
+    }
+}
+
+
+/* =====================================================
+   📱 SCREEN NAVIGATION
+===================================================== */
+
+let currentScreen = 0;
+
+const screens = document.querySelectorAll(".screen");
+const dots = document.querySelectorAll(".dot");
+
+
+function go(number) {
+
+    if (number < 0 || number >= screens.length) {
+        return;
+    }
+
+    screens[currentScreen].classList.remove("active");
+    dots[currentScreen].classList.remove("active");
+
+    currentScreen = number;
+
+    screens[currentScreen].classList.add("active");
+    dots[currentScreen].classList.add("active");
+
+}
+
+
+function nextScreen() {
+
+    if (currentScreen < screens.length - 1) {
+        go(currentScreen + 1);
+    }
+
+}
+
+
+/* Keyboard navigation */
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowRight") {
+        nextScreen();
+    }
+
+    if (event.key === "ArrowLeft") {
+        if (currentScreen > 0) {
+            go(currentScreen - 1);
+        }
+    }
+
+});
+
+
+/* =====================================================
+   ⭐ STARS
+===================================================== */
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    star.style.opacity =
+        Math.random();
+
+    stars.appendChild(star);
+
+}
+
+
+/* =====================================================
+   💌 SECRET MESSAGE
+===================================================== */
+
+function showSecret() {
+
+    const secret = document.getElementById("secret");
+
+    secret.style.display = "block";
+
+}
+
+
+/* =====================================================
+   🌷 TULIP RAIN
+===================================================== */
+
+function tulipRain() {
+
+    const flowers = ["🌷", "🌷", "🌷", "💗", "🌷"];
+
+    for (let i = 0; i < 35; i++) {
+
+        const tulip = document.createElement("div");
+
+        tulip.className = "tulip";
+
+        tulip.textContent =
+            flowers[Math.floor(Math.random() * flowers.length)];
+
+        tulip.style.left =
+            Math.random() * 100 + "vw";
+
+        tulip.style.fontSize =
+            (18 + Math.random() * 25) + "px";
+
+        tulip.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(tulip);
+
+        setTimeout(() => {
+            tulip.remove();
+        }, 8000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
